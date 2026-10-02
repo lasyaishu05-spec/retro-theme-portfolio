@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Akku Lasya | Retro Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #f6f0dd;
+            --main-text: #2b2521;
+            --accent-orange: #ff5f38;
+            --accent-teal: #008080;
+            --accent-yellow: #fabb15;
+            --accent-pink: #e65c9c;
+            --card-bg: #fffdf5;
+            --border-shadow: 4px 4px 0px #2b2521;
+            --border-shadow-hover: 7px 7px 0px #2b2521;
+            --border-shadow-active: 1px 1px 0px #2b2521;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--main-text);
+            font-family: 'Space Mono', monospace;
+            background-image: 
+                radial-gradient(var(--main-text) 1px, transparent 0);
+            background-size: 24px 24px;
+            overflow-x: hidden;
+            line-height: 1.6;
+            padding-bottom: 60px;
+        }
+
+        /* FLOATING BACKGROUND DECORATIONS */
+        .floating-shape {
+            position: fixed;
+            z-index: -1;
+            opacity: 0.18;
+            animation: float 8s ease-in-out infinite alternate;
+            pointer-events: none;
+        }
+
+        .shape-1 {
+            top: 10%;
+            left: 5%;
+            font-size: 5rem;
+            animation-duration: 6s;
+        }
+
+        .shape-2 {
+            top: 60%;
+            right: 8%;
+            font-size: 7rem;
+            animation-duration: 9s;
+            animation-delay: -2s;
+        }
+
+        .shape-3 {
+            bottom: 15%;
+            left: 12%;
+            font-size: 4rem;
+            animation-duration: 7s;
+            animation-delay: -4s;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-25px) rotate(5deg); }
+            100% { transform: translateY(15px) rotate(-5deg); }
+        }
+
+        /* CONTAINER */
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* NAVIGATION BAR */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--card-bg);
+            border: 3px solid var(--main-text);
+            box-shadow: var(--border-shadow);
+            padding: 15px 25px;
+            margin-top: 20px;
+            margin-bottom: 40px;
+            border-radius: 12px;
+        }
+
+        .logo {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.9rem;
+            color: var(--accent-orange);
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 15px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.65rem;
+            color: var(--main-text);
+            text-decoration: none;
+            padding: 8px 12px;
+            background: var(--accent-yellow);
+            border: 2px solid var(--main-text);
+            border-radius: 6px;
+            box-shadow: 2px 2px 0px var(--main-text);
+            transition: all 0.15s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: inline-block;
+        }
+
+        .nav-links a:hover {
+            transform: translate(-2px, -2px) scale(1.05);
+            box-shadow: 4px 4px 0px var(--main-text);
+            background: var(--accent-pink);
+            color: #fff;
+        }
+
+        .nav-links a:active {
+            transform: translate(1px, 1px);
+            box-shadow: 0px 0px 0px var(--main-text);
+        }
+
+        /* HERO SECTION */
+        .hero {
+            background: var(--card-bg);
+            border: 3px solid var(--main-text);
+            box-shadow: var(--border-shadow);
+            border-radius: 16px;
+            padding: 40px;
+            margin-bottom: 40px;
+            position: relative;
+            animation: bounceIn 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .pixel-tag {
+            display: inline-block;
+            background: var(--accent-teal);
+            color: #fff;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.65rem;
+            padding: 6px 10px;
+            border-radius: 4px;
+            border: 2px solid var(--main-text);
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            font-family: 'VT323', monospace;
+            font-size: 4rem;
+            line-height: 1;
+            margin-bottom: 15px;
+            color: var(--main-text);
+            text-shadow: 2px 2px 0px var(--accent-yellow);
+        }
+
+        .tagline {
+            font-size: 1.15rem;
+            font-weight: bold;
+            margin-bottom: 25px;
+            color: #4a423a;
+        }
+
+        /* BOUNCY BUTTONS */
+        .btn-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .btn {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.75rem;
+            text-decoration: none;
+            color: var(--main-text);
+            background-color: var(--accent-orange);
+            padding: 12px 20px;
+            border: 3px solid var(--main-text);
+            border-radius: 8px;
+            box-shadow: var(--border-shadow);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .btn:hover {
+            transform: translateY(-4px) scale(1.03);
+            box-shadow: var(--border-shadow-hover);
+            background-color: var(--accent-yellow);
+        }
+
+        .btn:active {
+            transform: translateY(2px);
+            box-shadow: var(--border-shadow-active);
+        }
+
+        .btn-secondary {
+            background-color: var(--card-bg);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--accent-teal);
+            color: #fff;
+        }
+
+        /* SECTION HEADINGS */
+        .section-title {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 1.2rem;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-title::before {
+            content: '►';
+            color: var(--accent-orange);
+            font-size: 1rem;
+        }
+
+        /* CARDS & GRID LAYOUT */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 3px solid var(--main-text);
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: var(--border-shadow);
+            transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card:hover {
+            transform: translateY(-6px) rotate(-1deg);
+            box-shadow: var(--border-shadow-hover);
+        }
+
+        .card h3 {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.85rem;
+            margin-bottom: 12px;
+            line-height: 1.4;
+            color: var(--accent-teal);
+        }
+
+        .card p {
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+            flex-grow: 1;
+        }
+
+        /* PILL TAGS */
+        .tag-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .pill {
+            font-size: 0.75rem;
+            font-weight: bold;
+            padding: 4px 8px;
+            border: 2px solid var(--main-text);
+            border-radius: 4px;
+            background: var(--bg-color);
+        }
+
+        .pill-orange { background: #ffe3dc; }
+        .pill-teal { background: #d0f0f0; }
+        .pill-yellow { background: #fff1c5; }
+
+        /* SKILLS SECTION */
+        .skills-section {
+            background: var(--card-bg);
+            border: 3px solid var(--main-text);
+            box-shadow: var(--border-shadow);
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 40px;
+        }
+
+        .skills-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .skill-badge {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.65rem;
+            padding: 10px 14px;
+            background: var(--card-bg);
+            border: 2px solid var(--main-text);
+            border-radius: 8px;
+            box-shadow: 3px 3px 0px var(--main-text);
+            cursor: default;
+            transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: inline-block;
+        }
+
+        .skill-badge:hover {
+            transform: translateY(-3px) scale(1.1) rotate(2deg);
+            background: var(--accent-pink);
+            color: #fff;
+            box-shadow: 5px 5px 0px var(--main-text);
+        }
+
+        /* ACHIEVEMENTS / HACKATHONS */
+        .achievement-list {
+            list-style: none;
+        }
+
+        .achievement-item {
+            background: var(--card-bg);
+            border: 3px solid var(--main-text);
+            box-shadow: var(--border-shadow);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .achievement-item:hover {
+            transform: translateX(6px);
+            box-shadow: var(--border-shadow-hover);
+        }
+
+        .achievement-icon {
+            font-size: 1.8rem;
+            line-height: 1;
+        }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.65rem;
+            margin-top: 50px;
+            padding: 20px;
+            color: #6a625a;
+        }
+
+        /* ANIMATION KEYFRAMES */
+        @keyframes bounceIn {
+            0% { opacity: 0; transform: scale(0.8) translateY(20px); }
+            60% { opacity: 1; transform: scale(1.03) translateY(-5px); }
+            100% { transform: scale(1) translateY(0); }
+        }
+
+        /* RESPONSIVE DESIGN */
+        @media (max-width: 600px) {
+            nav {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            h1 {
+                font-size: 2.8rem;
+            }
+
+            .btn-group {
+                flex-direction: column;
+            }
+
+            .btn {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Floating Retro Shapes -->
+    <div class="floating-shape shape-1">✦</div>
+    <div class="floating-shape shape-2">★</div>
+    <div class="floating-shape shape-3">▲</div>
+
+    <div class="container">
+        <!-- Navigation -->
+        <nav>
+            <a href="#" class="logo">lasya.sys</a>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#skills">Skills</a></li>
+            </ul>
+        </nav>
+
+        <!-- Hero Section -->
+        <section id="about" class="hero">
+            <span class="pixel-tag">B.Tech CSE (Generative AI) Student</span>
+            <h1>AKKU LASYA</h1>
+            <p class="tagline">Passionate about Machine Learning, AI agents, and building practical, user-focused AI application solutions.</p>
+            
+            <div class="btn-group">
+                <a href="mailto:lasyaishu05@gmail.com" class="btn">
+                    ✉ Send Email
+                </a>
+                <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+                    ⌨ GitHub
+                </a>
+                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+                    🔗 LinkedIn
+                </a>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <h2 class="section-title" id="projects">The Receipts (Projects)</h2>
+        <div class="grid">
+            <!-- Project 1 -->
+            <div class="card">
+                <div>
+                    <h3>Vara Grand PG Hostel Showcase</h3>
+                    <p>Designed and built a responsive showcase website for a women's PG hostel featuring amenities, room choices, location details, and inquiry options.</p>
+                    <div class="tag-container">
+                        <span class="pill pill-orange">HTML/CSS</span>
+                        <span class="pill pill-teal">JavaScript</span>
+                        <span class="pill pill-yellow">Responsive Web</span>
+                    </div>
+                </div>
+                <div style="margin-top: 20px;">
+                    <a href="https://varagrandpghostel.com" target="_blank" class="btn" style="width: 100%; justify-content: center;">Live Demo ↗</a>
+                </div>
+            </div>
+
+            <!-- Project 2 -->
+            <div class="card">
+                <div>
+                    <h3>Digital Cinema Watchlist</h3>
+                    <p>A cinematic watch-list platform designed to track movies and TV shows, complete with personalized user watchlists and a sleek media interface.</p>
+                    <div class="tag-container">
+                        <span class="pill pill-teal">React.js</span>
+                        <span class="pill pill-yellow">JavaScript</span>
+                        <span class="pill pill-orange">UI/UX</span>
+                    </div>
+                </div>
+                <div style="margin-top: 20px;">
+                    <a href="#" class="btn" style="width: 100%; justify-content: center;">View Project ↗</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Hackathons & Achievements -->
+        <h2 class="section-title">Milestones & Hackathons</h2>
+        <div class="achievement-list">
+            <div class="achievement-item">
+                <div class="achievement-icon">🏆</div>
+                <div>
+                    <strong>Top 20 Finalist — 24-Hour Hackathon</strong><br>
+                    <span style="font-size: 0.9rem;">Ranked among the Top 20 out of 120+ teams at NRI Institute of Technology with the <em>NyayBot</em> project.</span>
+                </div>
+            </div>
+            <div class="achievement-item">
+                <div class="achievement-icon">💡</div>
+                <div>
+                    <strong>IIT Hyderabad Online Hackathon</strong><br>
+                    <span style="font-size: 0.9rem;">Participated with <em>LifeLink</em>, an accessibility-oriented platform aiming to solve real-world problems.</span>
+                </div>
+            </div>
+            <div class="achievement-item">
+                <div class="achievement-icon">⚡</div>
+                <div>
+                    <strong>Microsoft GitHub Copilot Dev Days Workshop</strong><br>
+                    <span style="font-size: 0.9rem;">Hands-on training with AI-assisted software development and workflows.</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Skills Section -->
+        <h2 class="section-title" id="skills">Tech Stack & Tools</h2>
+        <div class="skills-section">
+            <div class="skills-grid">
+                <span class="skill-badge">Generative AI</span>
+                <span class="skill-badge">AI Agents</span>
+                <span class="skill-badge">Python</span>
+                <span class="skill-badge">C++</span>
+                <span class="skill-badge">JavaScript</span>
+                <span class="skill-badge">React.js</span>
+                <span class="skill-badge">HTML5 / CSS3</span>
+                <span class="skill-badge">SQL</span>
+                <span class="skill-badge">Prompt Engineering</span>
+                <span class="skill-badge">Machine Learning</span>
+                <span class="skill-badge">Cursor</span>
+                <span class="skill-badge">VS Code</span>
+                <span class="skill-badge">GitHub</span>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            Designed & Built for Akku Lasya • Retro Vintage Theme
+        </footer>
+    </div>
+
+    <!-- Interactive Script for Bouncy Effects & Sound Feel -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Add subtle random floating movement to skills badges on click
+            const badges = document.querySelectorAll('.skill-badge');
+            badges.forEach(badge => {
+                badge.addEventListener('click', () => {
+                    badge.style.transform = `scale(1.25) rotate(${Math.random() * 20 - 10}deg)`;
+                    setTimeout(() => {
+                        badge.style.transform = '';
+                    }, 300);
+                });
+            });
+
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
